@@ -73,3 +73,6 @@ light_client.yaml
 docs/content/references/sui-api/sui-graphql/*
 
 lcov.info
+
+# pnpm
+pnpm-lock.yaml
