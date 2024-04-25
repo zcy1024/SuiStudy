@@ -33,7 +33,7 @@ module simple_mine_clearance::admin {
         transfer::share_object(game_cap);
     }
 
-    public fun withdraw_(game_cap: &mut GameCap, ctx: &mut TxContext) {
+    public(package) fun withdraw_(game_cap: &mut GameCap, ctx: &mut TxContext) {
         // check the balance value
         assert!(game_cap.balance.value() > 0, ENotEarnBalance);
 
