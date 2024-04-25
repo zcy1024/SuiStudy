@@ -84,7 +84,14 @@ module simple_mine_clearance::task {
 
     #[allow(lint(self_transfer))]
     public fun complete_task(game_cap: &mut GameCap, task_id: ID, task_list: &mut TaskList, ctx: &mut TxContext) {
-        // get task
+        // get task_ids
+        let task_ids = &mut task_list.task_ids;
+        // get index
+        let (_, idx) = task_ids.index_of(&task_id);
+        // remove it
+        task_ids.remove(idx);
+
+        // remove and get task
         let task = task_list.tasks.remove(task_id);
         // get task details
         let Task {

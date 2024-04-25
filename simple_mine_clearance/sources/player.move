@@ -2,6 +2,8 @@ module simple_mine_clearance::player {
     use sui::sui::SUI;
     use sui::coin::Coin;
     use std::ascii::{char, Char};
+    use sui::event;
+    use std::ascii::{string, String};
 
     use simple_mine_clearance::admin::GameCap;
     use simple_mine_clearance::task::{Self, TaskList};
@@ -24,6 +26,10 @@ module simple_mine_clearance::player {
         task_id: ID,
         checkerboard: vector<vector<Char>>,
         hash_code: vector<u8>,
+    }
+
+    public struct PlayTooLate has copy, drop {
+        loser: String,
     }
 
     // ====== player function ======
@@ -139,7 +145,11 @@ module simple_mine_clearance::player {
 
     entry fun game_click_task(game_cap: &mut GameCap, mut r: u64, mut l: u64, mut game_info: GameInfo, task_list: &mut TaskList, ctx: &mut TxContext) {
         // check the task
-        assert!(task_list.contains(game_info.task_id), ENotCorrectTaskOrCompleted);
+        if (!task_list.contains(game_info.task_id)) {
+            destroy_game_info(game_info);
+            event::emit(PlayTooLate {loser: string(b"The bounty mission has been completed!!!")});
+            return
+        };
 
         // get the task
         let task = task_list.borrow_task_mut(game_info.task_id);
