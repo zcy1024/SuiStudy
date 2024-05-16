@@ -198,4 +198,23 @@ module simple_mine_clearance::player {
             destroy_game_info(game_info);
         };
     }
+
+    entry fun query_checkerboard(game_info: &GameInfo) {
+        game::emit(&game_info.checkerboard);
+    }
+
+    entry fun quit_game(game_info: GameInfo, task_list: &mut TaskList) {
+        // check the task
+        if (!task_list.contains(game_info.task_id)) {
+            destroy_game_info(game_info);
+            return
+        };
+
+        // get the task
+        let task = task_list.borrow_task_mut(game_info.task_id);
+
+        // update failure count and then destroy it
+        task.failed_attempt();
+        destroy_game_info(game_info);
+    }
 }
