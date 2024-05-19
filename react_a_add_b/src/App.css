@@ -1,0 +1,15 @@
+.ConnectButton {
+    text-align: center;
+    padding: 15%;
+}
+
+.Symbol {
+    position: relative;
+    top: 18px;
+    display: inline;
+}
+
+.CalButton {
+    position: relative;
+    top: 10px;
+}
