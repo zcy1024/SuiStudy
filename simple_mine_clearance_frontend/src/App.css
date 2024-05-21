@@ -1,4 +1,37 @@
-.App {
+.ConnectButton {
+	height: 66px;
 	text-align: center;
-	padding: 20%
+	padding-top: 6%;
+}
+
+.Game {
+	text-align: center;
+}
+
+.StartButton {
+	height: 66px;
+}
+
+#NotConnect {
+	font-size: small;
+}
+
+.FeedBack {
+	padding-top: 2%;
+	text-align: center;
+}
+
+.SuccessAlert {
+	width: 450px;
+	/* display: inline-flex; */
+}
+
+.EncourageAlert {
+	width: 600px;
+	/* display: inline-flex; */
+}
+
+.FailureAlert {
+	width: 350px;
+	/* display: inline-flex; */
 }
