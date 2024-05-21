@@ -1,3 +1,7 @@
+# Note
+
+This is the simplest front-end interface and does not include on-chain calls. Please [click](https://github.com/zcy1024/mine-clearance) to view subsequent updates.
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
